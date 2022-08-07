@@ -1,29 +1,29 @@
-package com.decathlon.pointscalculator.model.event.impl;
+package com.decathlon.pointscalculator.event.impl;
 
-import com.decathlon.pointscalculator.model.event.Event;
+import com.decathlon.pointscalculator.event.Event;
 
-public class Event110mHurdles implements Event {
-    public Event110mHurdles() {
+public class Event400m implements Event {
+    public Event400m() {
     }
 
     @Override
     public String getName() {
-        return "100 meters Hurdles";
+        return "400 Meters";
     }
 
     @Override
     public Float getA() {
-        return 5.74352f;
+        return 1.53775f;
     }
 
     @Override
     public Float getB() {
-        return 28.5f;
+        return 82f;
     }
 
     @Override
     public Float getC() {
-        return 1.92f;
+        return 1.81f;
     }
 
     @Override

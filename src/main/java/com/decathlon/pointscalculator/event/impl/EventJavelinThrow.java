@@ -1,6 +1,6 @@
-package com.decathlon.pointscalculator.model.event.impl;
+package com.decathlon.pointscalculator.event.impl;
 
-import com.decathlon.pointscalculator.model.event.Event;
+import com.decathlon.pointscalculator.event.Event;
 
 public class EventJavelinThrow implements Event {
     public EventJavelinThrow() {

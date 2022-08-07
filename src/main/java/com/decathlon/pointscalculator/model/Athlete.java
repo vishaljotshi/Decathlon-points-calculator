@@ -1,9 +1,15 @@
 package com.decathlon.pointscalculator.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Athlete {
     private String name;
     private Integer points;
     private String position;
+
+    Athlete(){
+    }
 
     public Athlete(String name, Integer points) {
         this.name = name;

@@ -1,4 +1,4 @@
-package com.decathlon.pointscalculator;
+package com.decathlon.pointscalculator.event;
 
 public enum EventName {
     HUNDRED_M,

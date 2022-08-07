@@ -1,8 +1,7 @@
 package com.decathlon.pointscalculator.model;
 
-import com.decathlon.pointscalculator.EventName;
+import com.decathlon.pointscalculator.event.EventName;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 

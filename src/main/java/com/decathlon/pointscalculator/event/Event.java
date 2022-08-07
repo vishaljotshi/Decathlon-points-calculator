@@ -1,4 +1,4 @@
-package com.decathlon.pointscalculator.model.event;
+package com.decathlon.pointscalculator.event;
 
 public interface Event {
     public String getName();

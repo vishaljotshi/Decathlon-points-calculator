@@ -1,29 +1,29 @@
-package com.decathlon.pointscalculator.model.event.impl;
+package com.decathlon.pointscalculator.event.impl;
 
-import com.decathlon.pointscalculator.model.event.Event;
+import com.decathlon.pointscalculator.event.Event;
 
-public class EventPoleVault implements Event {
-    public EventPoleVault() {
+public class EventHighJump implements Event {
+    public EventHighJump() {
     }
 
     @Override
     public String getName() {
-        return "Pole Vault";
+        return "High Jump";
     }
 
     @Override
     public Float getA() {
-        return 0.2797f;
+        return 0.8465f;
     }
 
     @Override
     public Float getB() {
-        return 100f;
+        return 75f;
     }
 
     @Override
     public Float getC() {
-        return 1.35f;
+        return 1.42f;
     }
 
     @Override

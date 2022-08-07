@@ -2,23 +2,23 @@ package com.decathlon.pointscalculator.model.event.impl;
 
 import com.decathlon.pointscalculator.model.event.Event;
 
-public class Event100m implements Event {
-    public Event100m() {
+public class Event400m implements Event {
+    public Event400m() {
     }
 
     @Override
     public String getName() {
-        return "100 meters";
+        return "400 Meters";
     }
 
     @Override
     public Float getA() {
-        return 25.4347f;
+        return 1.53775f;
     }
 
     @Override
     public Float getB() {
-        return 18f;
+        return 82f;
     }
 
     @Override

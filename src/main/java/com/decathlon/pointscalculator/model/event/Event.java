@@ -5,5 +5,5 @@ public interface Event {
     public Float getA();
     public Float getB();
     public Float getC();
-    public Integer getPoints();
+    public Integer getPoints(String score);
 }

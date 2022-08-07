@@ -2,33 +2,33 @@ package com.decathlon.pointscalculator.model.event.impl;
 
 import com.decathlon.pointscalculator.model.event.Event;
 
-public class Event100m implements Event {
-    public Event100m() {
+public class EventLongJump implements Event {
+    public EventLongJump() {
     }
 
     @Override
     public String getName() {
-        return "100 meters";
+        return "Long Jump";
     }
 
     @Override
     public Float getA() {
-        return 25.4347f;
+        return 0.14354f;
     }
 
     @Override
     public Float getB() {
-        return 18f;
+        return 220f;
     }
 
     @Override
     public Float getC() {
-        return 1.81f;
+        return 1.4f;
     }
 
     @Override
     public Integer getPoints(String score) {
-        Integer calculatedPoints = (int)Math.floor(getA() * Math.pow(getB() - Float.valueOf(score), getC()));
+        Integer calculatedPoints = (int)Math.floor(getA() * Math.pow((Float.valueOf(score)*100) - getB() , getC()));
         return calculatedPoints;
     }
 }

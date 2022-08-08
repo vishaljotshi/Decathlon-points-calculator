@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Athletes>
+    <Athlete>
+        <name>John Smith</name>
+        <points>9990</points>
+        <position>1</position>
+        <results>
+            <eventName>100 meters</eventName>
+            <score>10.395</score>
+        </results>
+        <results>
+            <eventName>Long Jump</eventName>
+            <score>7.76</score>
+        </results>
+        <results>
+            <eventName>Shot Put</eventName>
+            <score>18.40</score>
+        </results>
+        <results>
+            <eventName>High Jump</eventName>
+            <score>2.20</score>
+        </results>
+        <results>
+            <eventName>400 Meters</eventName>
+            <score>46.17</score>
+        </results>
+        <results>
+            <eventName>100 meters Hurdles</eventName>
+            <score>13.80</score>
+        </results>
+        <results>
+            <eventName>Discus Throw</eventName>
+            <score>56.17</score>
+        </results>
+        <results>
+            <eventName>Pole Vault</eventName>
+            <score>5.28</score>
+        </results>
+        <results>
+            <eventName>Javelin Throw</eventName>
+            <score>77.19</score>
+        </results>
+        <results>
+            <eventName>1500 meters</eventName>
+            <score>3:53.79</score>
+        </results>
+    </Athlete>
+    <Athlete>
+        <name>Kevin Mayer 1</name>
+        <points>9126</points>
+        <position>2-3-4</position>
+        <results>
+            <eventName>100 meters</eventName>
+            <score>10.55</score>
+        </results>
+        <results>
+            <eventName>Long Jump</eventName>
+            <score>7.80</score>
+        </results>
+        <results>
+            <eventName>Shot Put</eventName>
+            <score>16.00</score>
+        </results>
+        <results>
+            <eventName>High Jump</eventName>
+            <score>2.05</score>
+        </results>
+        <results>
+            <eventName>400 Meters</eventName>
+            <score>48.42</score>
+        </results>
+        <results>
+            <eventName>100 meters Hurdles</eventName>
+            <score>13.75</score>
+        </results>
+        <results>
+            <eventName>Discus Throw</eventName>
+            <score>50.54</score>
+        </results>
+        <results>
+            <eventName>Pole Vault</eventName>
+            <score>5.45</score>
+        </results>
+        <results>
+            <eventName>Javelin Throw</eventName>
+            <score>71.90</score>
+        </results>
+        <results>
+            <eventName>1500 meters</eventName>
+            <score>4:36.11</score>
+        </results>
+    </Athlete>
+    <Athlete>
+        <name>Kevin Mayer 2</name>
+        <points>9126</points>
+        <position>2-3-4</position>
+        <results>
+            <eventName>100 meters</eventName>
+            <score>10.55</score>
+        </results>
+        <results>
+            <eventName>Long Jump</eventName>
+            <score>7.80</score>
+        </results>
+        <results>
+            <eventName>Shot Put</eventName>
+            <score>16.00</score>
+        </results>
+        <results>
+            <eventName>High Jump</eventName>
+            <score>2.05</score>
+        </results>
+        <results>
+            <eventName>400 Meters</eventName>
+            <score>48.42</score>
+        </results>
+        <results>
+            <eventName>100 meters Hurdles</eventName>
+            <score>13.75</score>
+        </results>
+        <results>
+            <eventName>Discus Throw</eventName>
+            <score>50.54</score>
+        </results>
+        <results>
+            <eventName>Pole Vault</eventName>
+            <score>5.45</score>
+        </results>
+        <results>
+            <eventName>Javelin Throw</eventName>
+            <score>71.90</score>
+        </results>
+        <results>
+            <eventName>1500 meters</eventName>
+            <score>4:36.11</score>
+        </results>
+    </Athlete>
+    <Athlete>
+        <name>Kevin Mayer 3</name>
+        <points>9126</points>
+        <position>2-3-4</position>
+        <results>
+            <eventName>100 meters</eventName>
+            <score>10.55</score>
+        </results>
+        <results>
+            <eventName>Long Jump</eventName>
+            <score>7.80</score>
+        </results>
+        <results>
+            <eventName>Shot Put</eventName>
+            <score>16.00</score>
+        </results>
+        <results>
+            <eventName>High Jump</eventName>
+            <score>2.05</score>
+        </results>
+        <results>
+            <eventName>400 Meters</eventName>
+            <score>48.42</score>
+        </results>
+        <results>
+            <eventName>100 meters Hurdles</eventName>
+            <score>13.75</score>
+        </results>
+        <results>
+            <eventName>Discus Throw</eventName>
+            <score>50.54</score>
+        </results>
+        <results>
+            <eventName>Pole Vault</eventName>
+            <score>5.45</score>
+        </results>
+        <results>
+            <eventName>Javelin Throw</eventName>
+            <score>71.90</score>
+        </results>
+        <results>
+            <eventName>1500 meters</eventName>
+            <score>4:36.11</score>
+        </results>
+    </Athlete>
+    <Athlete>
+        <name>Jane Doe</name>
+        <points>3738</points>
+        <position>5</position>
+        <results>
+            <eventName>100 meters</eventName>
+            <score>10.395</score>
+        </results>
+        <results>
+            <eventName>Long Jump</eventName>
+            <score>4.53</score>
+        </results>
+        <results>
+            <eventName>Shot Put</eventName>
+            <score>7.79</score>
+        </results>
+        <results>
+            <eventName>High Jump</eventName>
+            <score>1.55</score>
+        </results>
+        <results>
+            <eventName>400 Meters</eventName>
+            <score>64.72</score>
+        </results>
+        <results>
+            <eventName>100 meters Hurdles</eventName>
+            <score>18.74</score>
+        </results>
+        <results>
+            <eventName>Discus Throw</eventName>
+            <score>24.20</score>
+        </results>
+        <results>
+            <eventName>Pole Vault</eventName>
+            <score>2.40</score>
+        </results>
+        <results>
+            <eventName>Javelin Throw</eventName>
+            <score>28.20</score>
+        </results>
+        <results>
+            <eventName>1500 meters</eventName>
+            <score>6:50.76</score>
+        </results>
+    </Athlete>
+    <Athlete>
+        <name>Jaan Lepp 1</name>
+        <points>3494</points>
+        <position>6-7-8</position>
+        <results>
+            <eventName>100 meters</eventName>
+            <score>13.75</score>
+        </results>
+        <results>
+            <eventName>Long Jump</eventName>
+            <score>4.84</score>
+        </results>
+        <results>
+            <eventName>Shot Put</eventName>
+            <score>10.12</score>
+        </results>
+        <results>
+            <eventName>High Jump</eventName>
+            <score>1.50</score>
+        </results>
+        <results>
+            <eventName>400 Meters</eventName>
+            <score>68.44</score>
+        </results>
+        <results>
+            <eventName>100 meters Hurdles</eventName>
+            <score>19.18</score>
+        </results>
+        <results>
+            <eventName>Discus Throw</eventName>
+            <score>30.85</score>
+        </results>
+        <results>
+            <eventName>Pole Vault</eventName>
+            <score>2.80</score>
+        </results>
+        <results>
+            <eventName>Javelin Throw</eventName>
+            <score>33.88</score>
+        </results>
+        <results>
+            <eventName>1500 meters</eventName>
+            <score>6:22.75</score>
+        </results>
+    </Athlete>
+    <Athlete>
+        <name>Jaan Lepp 2</name>
+        <points>3494</points>
+        <position>6-7-8</position>
+        <results>
+            <eventName>100 meters</eventName>
+            <score>13.75</score>
+        </results>
+        <results>
+            <eventName>Long Jump</eventName>
+            <score>4.84</score>
+        </results>
+        <results>
+            <eventName>Shot Put</eventName>
+            <score>10.12</score>
+        </results>
+        <results>
+            <eventName>High Jump</eventName>
+            <score>1.50</score>
+        </results>
+        <results>
+            <eventName>400 Meters</eventName>
+            <score>68.44</score>
+        </results>
+        <results>
+            <eventName>100 meters Hurdles</eventName>
+            <score>19.18</score>
+        </results>
+        <results>
+            <eventName>Discus Throw</eventName>
+            <score>30.85</score>
+        </results>
+        <results>
+            <eventName>Pole Vault</eventName>
+            <score>2.80</score>
+        </results>
+        <results>
+            <eventName>Javelin Throw</eventName>
+            <score>33.88</score>
+        </results>
+        <results>
+            <eventName>1500 meters</eventName>
+            <score>6:22.75</score>
+        </results>
+    </Athlete>
+    <Athlete>
+        <name>Jaan Lepp 3</name>
+        <points>3494</points>
+        <position>6-7-8</position>
+        <results>
+            <eventName>100 meters</eventName>
+            <score>13.75</score>
+        </results>
+        <results>
+            <eventName>Long Jump</eventName>
+            <score>4.84</score>
+        </results>
+        <results>
+            <eventName>Shot Put</eventName>
+            <score>10.12</score>
+        </results>
+        <results>
+            <eventName>High Jump</eventName>
+            <score>1.50</score>
+        </results>
+        <results>
+            <eventName>400 Meters</eventName>
+            <score>68.44</score>
+        </results>
+        <results>
+            <eventName>100 meters Hurdles</eventName>
+            <score>19.18</score>
+        </results>
+        <results>
+            <eventName>Discus Throw</eventName>
+            <score>30.85</score>
+        </results>
+        <results>
+            <eventName>Pole Vault</eventName>
+            <score>2.80</score>
+        </results>
+        <results>
+            <eventName>Javelin Throw</eventName>
+            <score>33.88</score>
+        </results>
+        <results>
+            <eventName>1500 meters</eventName>
+            <score>6:22.75</score>
+        </results>
+    </Athlete>
+    <Athlete>
+        <name>Foo Bar</name>
+        <points>3099</points>
+        <position>9</position>
+        <results>
+            <eventName>100 meters</eventName>
+            <score>13.43</score>
+        </results>
+        <results>
+            <eventName>Long Jump</eventName>
+            <score>4.35</score>
+        </results>
+        <results>
+            <eventName>Shot Put</eventName>
+            <score>8.64</score>
+        </results>
+        <results>
+            <eventName>High Jump</eventName>
+            <score>1.50</score>
+        </results>
+        <results>
+            <eventName>400 Meters</eventName>
+            <score>66.06</score>
+        </results>
+        <results>
+            <eventName>100 meters Hurdles</eventName>
+            <score>19.05</score>
+        </results>
+        <results>
+            <eventName>Discus Throw</eventName>
+            <score>24.89</score>
+        </results>
+        <results>
+            <eventName>Pole Vault</eventName>
+            <score>2.20</score>
+        </results>
+        <results>
+            <eventName>Javelin Throw</eventName>
+            <score>33.48</score>
+        </results>
+        <results>
+            <eventName>1500 meters</eventName>
+            <score>6:51.01</score>
+        </results>
+    </Athlete>
+</Athletes>

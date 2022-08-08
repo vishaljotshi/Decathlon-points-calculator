@@ -2,16 +2,16 @@ package com.decathlon.pointscalculator.model;
 
 import com.decathlon.pointscalculator.event.EventName;
 
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Record {
-    private static final String CSV_SEPARATOR = ";";
     public static final int TOTAL_RECORDS_COUNT = 11;
     private String  name;
     private Map<EventName,String> eventScoreMap=new LinkedHashMap<>();
-    public Record(String recordLine) {
-        String[] records = recordLine.split(CSV_SEPARATOR);
+    public Record(String recordLine,String seperator) {
+        String[] records = recordLine.split(seperator);
         validateRecordsCount(records);
         populateEventScoreMap(records);
     }
@@ -33,7 +33,7 @@ public class Record {
 
     private void validateRecordsCount(String[] records) {
         if(records.length!= TOTAL_RECORDS_COUNT){
-            throw new RuntimeException("Incorrect record size, Skipping this record");
+            throw new RuntimeException("Incorrect record count:"+records.length+", Skipping this record");
         }
     }
 

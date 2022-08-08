@@ -1,19 +1,22 @@
 package com.decathlon.pointscalculator.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.List;
 
 @XmlRootElement
 public class Athlete {
     private String name;
     private Integer points;
     private String position;
+    private List<Result> results;
 
-    Athlete(){
+    Athlete() {
     }
 
-    public Athlete(String name, Integer points) {
+    public Athlete(String name, Integer points, List<Result> results) {
         this.name = name;
         this.points = points;
+        this.results = results;
     }
 
     public String getName() {
@@ -38,6 +41,14 @@ public class Athlete {
 
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    public List<Result> getResults() {
+        return results;
+    }
+
+    public void setResults(List<Result> results) {
+        this.results = results;
     }
 
     @Override

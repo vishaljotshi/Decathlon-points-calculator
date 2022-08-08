@@ -1,9 +1,14 @@
 package com.decathlon.pointscalculator.event.impl;
 
 import com.decathlon.pointscalculator.event.Event;
+import com.decathlon.pointscalculator.exceptions.InvalidScoreFormatException;
+
+import java.util.logging.Logger;
 
 public class Event1500m implements Event {
+    Logger logger=Logger.getLogger(Event1500m.class.getName());
     public Event1500m() {
+        // default constructor
     }
 
     @Override
@@ -31,11 +36,11 @@ public class Event1500m implements Event {
 
         String[] splittedScore = score.split(":");
         if (splittedScore.length!=2){
-            throw new RuntimeException(String.format("Invalid format for "+getName()+" event score value"));
+            throw new InvalidScoreFormatException(String.format("Invalid format for %s event score value",getName()));
         }
         float scoreInSeconds=(Float.valueOf(splittedScore[0])*60f)+Float.parseFloat(splittedScore[1]);
 
-        Integer calculatedPoints = (int)Math.floor(getA() * Math.pow(getB() - scoreInSeconds, getC()));
-        return calculatedPoints;
+        return  (int)Math.floor(getA() * Math.pow(getB() - scoreInSeconds, getC()));
+
     }
 }

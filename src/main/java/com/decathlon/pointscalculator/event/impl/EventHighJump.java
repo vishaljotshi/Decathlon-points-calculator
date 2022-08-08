@@ -4,6 +4,7 @@ import com.decathlon.pointscalculator.event.Event;
 
 public class EventHighJump implements Event {
     public EventHighJump() {
+        // default constructor
     }
 
     @Override
@@ -28,7 +29,6 @@ public class EventHighJump implements Event {
 
     @Override
     public Integer getPoints(String score) {
-        Integer calculatedPoints = (int)Math.floor(getA() * Math.pow((Float.valueOf(score)*100) - getB(), getC()));
-        return calculatedPoints;
+        return  (int)Math.floor(getA() * Math.pow((Float.valueOf(score)*100) - getB(), getC()));
     }
 }

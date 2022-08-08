@@ -1,6 +1,8 @@
 package com.decathlon.pointscalculator.event.impl;
 
 import com.decathlon.pointscalculator.event.OutputWriter;
+import com.decathlon.pointscalculator.exceptions.OutputFileWritingException;
+import com.decathlon.pointscalculator.exceptions.XMLGenerationException;
 import com.decathlon.pointscalculator.model.Athletes;
 
 import javax.xml.bind.JAXBContext;
@@ -32,11 +34,9 @@ public class XmlWriter implements OutputWriter {
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             StringWriter sw = new StringWriter();
             jaxbMarshaller.marshal(athletes, sw);
-            String xmlContent = sw.toString();
-            return xmlContent;
+            return sw.toString();
         } catch (JAXBException e) {
-            System.out.println("Exception occurred while generating XML output : "+e.getMessage());
-            throw new RuntimeException(e);
+            throw new XMLGenerationException("Exception occurred while generating XML output :"+e.getMessage());
         }
     }
 
@@ -46,8 +46,7 @@ public class XmlWriter implements OutputWriter {
             byte[] strToBytes = content.getBytes();
             Files.write(path, strToBytes);
         } catch (IOException e) {
-            System.out.println("Exception occurred while writing XML file : "+e.getMessage());
-            throw new RuntimeException(e);
+            throw new OutputFileWritingException("Exception occurred while writing XML file : "+e.getMessage());
         }
     }
 }

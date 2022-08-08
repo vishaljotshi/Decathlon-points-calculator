@@ -6,25 +6,23 @@ import com.decathlon.pointscalculator.event.OutputWriter;
 import com.decathlon.pointscalculator.event.impl.*;
 import com.decathlon.pointscalculator.model.Athlete;
 import com.decathlon.pointscalculator.model.Athletes;
-import com.decathlon.pointscalculator.model.Record;
+import com.decathlon.pointscalculator.model.AthleteRecord;
 import com.decathlon.pointscalculator.model.Result;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
 import java.io.IOException;
-import java.io.StringWriter;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.*;
-import static java.util.stream.Collectors.toList;
 
 public class PointsCalculatorProcessor {
+    Logger logger=Logger.getLogger(PointsCalculatorProcessor.class.getName());
     private static Map<EventName, Event> eventMap = new LinkedHashMap<>();
     private String inputFilePath;
     private OutputWriter outputWriter;
@@ -53,36 +51,40 @@ public class PointsCalculatorProcessor {
         AtomicInteger currentPosition = new AtomicInteger(1);
         initializeEventMap();
 
-        Athletes athletes = Files.lines(Paths.get(inputFilePath))
-                .filter(recordLine -> recordLine.length() > 0)
-                .map(recordLine -> getRecord(recordLine))
-                .filter(optionalRecord -> optionalRecord.isPresent())
-                .map(optionalRecord -> optionalRecord.get())
-                .map(record -> getPerformance(record))
-                .collect(groupingBy(athlete -> athlete.getPoints()))
-                .entrySet()
-                .stream()
-                .sorted(Comparator.comparingInt((Map.Entry<Integer, List<Athlete>> value) -> value.getKey()).reversed())
-                .flatMap(entry -> {
-                    String position = getPosition(currentPosition, entry);
-                    entry.getValue().stream().forEach(athlete -> athlete.setPosition(position));
-                    return entry.getValue().stream();
-                })
-                .collect(collectingAndThen(toList(), (List<Athlete> athletes1) -> new Athletes(athletes1)));
+        Athletes athletes=null;
+        try(Stream<String> inputFileStream=Files.lines(Paths.get(inputFilePath))) {
+            athletes=inputFileStream
+                    .filter(recordLine -> recordLine.length() > 0)
+                    .map(this::getRecord)
+                    .filter(Optional::isPresent)
+                    .map(Optional::get)
+                    .map(this::getPerformance)
+                    .collect(groupingBy(Athlete::getPoints))
+                    .entrySet()
+                    .stream()
+                    .sorted(Comparator.comparingInt((Map.Entry<Integer, List<Athlete>> value) -> value.getKey()).reversed())
+                    .flatMap(entry -> {
+                        String position = getPosition(currentPosition, entry);
+                        entry.getValue().stream().forEach(athlete -> athlete.setPosition(position));
+                        return entry.getValue().stream();
+                    })
+                    .collect(collectingAndThen(toList(), Athletes::new));
+        }
         outputWriter.convertAndWrite(athletes);
     }
 
     private String getPosition(AtomicInteger currentPosition, Map.Entry<Integer, List<Athlete>> entry) {
         return IntStream.range(currentPosition.get(), currentPosition.get() + entry.getValue().size())
-                .mapToObj(val -> String.valueOf(val))
-                .peek(val -> currentPosition.incrementAndGet())
+                .mapToObj(i -> {
+                    currentPosition.incrementAndGet();
+                    return String.valueOf(i);})
                 .collect(joining("-"));
     }
 
-    private Athlete getPerformance(Record record) {
-        String name = record.getName();
+    private Athlete getPerformance(AthleteRecord athleteRecord) {
+        String name = athleteRecord.getName();
         List<Result> results=new ArrayList<>();
-        int points = record.getEventScoreMap().entrySet().stream()
+        int points = athleteRecord.getEventScoreMap().entrySet().stream()
                 .mapToInt(eventEntry -> {
                             results.add(new Result(eventMap.get(eventEntry.getKey()).getName(),eventEntry.getValue()));
                             return eventMap.get(eventEntry.getKey())
@@ -90,15 +92,14 @@ public class PointsCalculatorProcessor {
                         }
                 )
                 .sum();
-        Athlete athlete = new Athlete(name, points,results);
-        return athlete;
+        return new Athlete(name, points,results);
     }
 
-    private Optional<Record> getRecord(String recordLine) {
+    private Optional<AthleteRecord> getRecord(String recordLine) {
         try {
-            return Optional.of(new Record(recordLine,csvDelimiter));
+            return Optional.of(new AthleteRecord(recordLine,csvDelimiter));
         } catch (Exception e) {
-            System.out.println("Exception occurred while reading records : " + e.getMessage());
+            logger.log(Level.SEVERE,String.format("Exception occurred while reading records : %f",e.getMessage()));
         }
         return Optional.empty();
     }

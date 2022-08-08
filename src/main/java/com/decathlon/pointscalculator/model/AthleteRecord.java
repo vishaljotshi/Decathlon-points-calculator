@@ -1,16 +1,16 @@
 package com.decathlon.pointscalculator.model;
 
 import com.decathlon.pointscalculator.event.EventName;
+import com.decathlon.pointscalculator.exceptions.InvalidRecordColumnCountException;
 
-import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class Record {
+public class AthleteRecord {
     public static final int TOTAL_RECORDS_COUNT = 11;
     private String  name;
     private Map<EventName,String> eventScoreMap=new LinkedHashMap<>();
-    public Record(String recordLine,String separator) {
+    public AthleteRecord(String recordLine, String separator) {
         String[] records = recordLine.split(separator);
         validateRecordsCount(records);
         populateEventScoreMap(records);
@@ -28,12 +28,12 @@ public class Record {
         eventScoreMap.put(EventName.DISCUS_THROW, records[index++]);
         eventScoreMap.put(EventName.POLE_VAULT, records[index++]);
         eventScoreMap.put(EventName.JAVELIN_THROW, records[index++]);
-        eventScoreMap.put(EventName.FIFTEEN_HUNDRED_M, records[index++]);
+        eventScoreMap.put(EventName.FIFTEEN_HUNDRED_M, records[index]);
     }
 
     private void validateRecordsCount(String[] records) {
         if(records.length!= TOTAL_RECORDS_COUNT){
-            throw new RuntimeException("Incorrect record count:"+records.length+", Skipping this record");
+            throw new InvalidRecordColumnCountException("Incorrect record count:"+records.length+", Skipping this record");
         }
     }
 

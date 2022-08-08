@@ -1,6 +1,8 @@
 package com.decathlon.pointscalculator;
 
 
+import com.decathlon.pointscalculator.event.OutputWriter;
+import com.decathlon.pointscalculator.event.impl.XmlWriter;
 import com.decathlon.pointscalculator.service.PointsCalculatorProcessor;
 
 import java.io.IOException;
@@ -33,7 +35,8 @@ public class PointsCalculatorApplication {
 		System.out.println(outputFilePath);
 		System.out.println(csvDelimiter);
 
-		PointsCalculatorProcessor processor=new PointsCalculatorProcessor(inputFilePath, outputFilePath,csvDelimiter);
+		OutputWriter outputWriter=new XmlWriter(outputFilePath);
+		PointsCalculatorProcessor processor=new PointsCalculatorProcessor(inputFilePath,csvDelimiter,outputWriter);
 		processor.process();
 
 	}

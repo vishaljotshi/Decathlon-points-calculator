@@ -10,8 +10,8 @@ public class Record {
     public static final int TOTAL_RECORDS_COUNT = 11;
     private String  name;
     private Map<EventName,String> eventScoreMap=new LinkedHashMap<>();
-    public Record(String recordLine,String seperator) {
-        String[] records = recordLine.split(seperator);
+    public Record(String recordLine,String separator) {
+        String[] records = recordLine.split(separator);
         validateRecordsCount(records);
         populateEventScoreMap(records);
     }

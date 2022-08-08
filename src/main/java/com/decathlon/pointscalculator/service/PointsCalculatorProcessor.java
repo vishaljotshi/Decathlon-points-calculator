@@ -2,6 +2,7 @@ package com.decathlon.pointscalculator.service;
 
 import com.decathlon.pointscalculator.event.Event;
 import com.decathlon.pointscalculator.event.EventName;
+import com.decathlon.pointscalculator.event.OutputWriter;
 import com.decathlon.pointscalculator.event.impl.*;
 import com.decathlon.pointscalculator.model.Athlete;
 import com.decathlon.pointscalculator.model.Athletes;
@@ -26,13 +27,26 @@ import static java.util.stream.Collectors.toList;
 public class PointsCalculatorProcessor {
     private static Map<EventName, Event> eventMap = new LinkedHashMap<>();
     private String inputFilePath;
-    private String outputFilePath;
+    private OutputWriter outputWriter;
     private String csvDelimiter;
 
-    public PointsCalculatorProcessor(String inputFilePath, String outputFilePath, String csvDelimiter) {
+    public PointsCalculatorProcessor(String inputFilePath, String csvDelimiter, OutputWriter outputWriter) {
         this.inputFilePath=inputFilePath;
-        this.outputFilePath=outputFilePath;
+        this.outputWriter=outputWriter;
         this.csvDelimiter=csvDelimiter;
+    }
+
+    private void initializeEventMap() {
+        eventMap.put(EventName.HUNDRED_M, new Event100m());
+        eventMap.put(EventName.LONG_JUMP, new EventLongJump());
+        eventMap.put(EventName.SHOT_PUT, new EventShotPut());
+        eventMap.put(EventName.HIGH_JUMP, new EventHighJump());
+        eventMap.put(EventName.FOUR_HUNDRED_METERS, new Event400m());
+        eventMap.put(EventName.HUNDRED_TEN_M_HURDLES, new Event110mHurdles());
+        eventMap.put(EventName.DISCUS_THROW, new EventDiscusThrow());
+        eventMap.put(EventName.POLE_VAULT, new EventPoleVault());
+        eventMap.put(EventName.JAVELIN_THROW, new EventJavelinThrow());
+        eventMap.put(EventName.FIFTEEN_HUNDRED_M, new Event1500m());
     }
 
     public void process() throws IOException {
@@ -55,8 +69,7 @@ public class PointsCalculatorProcessor {
                     return entry.getValue().stream();
                 })
                 .collect(collectingAndThen(toList(), (List<Athlete> athletes1) -> new Athletes(athletes1)));
-        String generatedXMLString = generateXMLString(athletes);
-        writeOutput(generatedXMLString);
+        outputWriter.convertAndWrite(athletes);
     }
 
     private String getPosition(AtomicInteger currentPosition, Map.Entry<Integer, List<Athlete>> entry) {
@@ -64,43 +77,6 @@ public class PointsCalculatorProcessor {
                 .mapToObj(val -> String.valueOf(val))
                 .peek(val -> currentPosition.incrementAndGet())
                 .collect(joining("-"));
-    }
-
-    private void initializeEventMap() {
-        eventMap.put(EventName.HUNDRED_M, new Event100m());
-        eventMap.put(EventName.LONG_JUMP, new EventLongJump());
-        eventMap.put(EventName.SHOT_PUT, new EventShotPut());
-        eventMap.put(EventName.HIGH_JUMP, new EventHighJump());
-        eventMap.put(EventName.FOUR_HUNDRED_METERS, new Event400m());
-        eventMap.put(EventName.HUNDRED_TEN_M_HURDLES, new Event110mHurdles());
-        eventMap.put(EventName.DISCUS_THROW, new EventDiscusThrow());
-        eventMap.put(EventName.POLE_VAULT, new EventPoleVault());
-        eventMap.put(EventName.JAVELIN_THROW, new EventJavelinThrow());
-        eventMap.put(EventName.FIFTEEN_HUNDRED_M, new Event1500m());
-    }
-
-    public void writeOutput(String content) {
-        try {
-            Path path = Paths.get(outputFilePath);
-            byte[] strToBytes = content.getBytes();
-            Files.write(path, strToBytes);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private String generateXMLString(Athletes athletes) {
-        try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(Athletes.class);
-            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-            StringWriter sw = new StringWriter();
-            jaxbMarshaller.marshal(athletes, sw);
-            String xmlContent = sw.toString();
-            return xmlContent;
-        } catch (JAXBException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     private Athlete getPerformance(Record record) {

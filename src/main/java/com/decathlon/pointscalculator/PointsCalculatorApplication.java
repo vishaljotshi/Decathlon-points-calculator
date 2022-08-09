@@ -3,7 +3,7 @@ package com.decathlon.pointscalculator;
 import com.decathlon.pointscalculator.event.OutputWriter;
 import com.decathlon.pointscalculator.event.impl.XmlWriter;
 import com.decathlon.pointscalculator.exceptions.ProcessingException;
-import com.decathlon.pointscalculator.service.PointsCalculatorProcessor;
+import com.decathlon.pointscalculator.service.PointsCalculatorService;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -30,7 +30,7 @@ public class PointsCalculatorApplication {
 		String csvDelimiter=argMap.getOrDefault(CSV_DELIMITER_ARG,DEFAULT_CSV_DELIMITER);
 
 		OutputWriter outputWriter=new XmlWriter(outputFilePath);
-		PointsCalculatorProcessor processor=new PointsCalculatorProcessor(inputFilePath,csvDelimiter,outputWriter);
+		PointsCalculatorService processor=new PointsCalculatorService(inputFilePath,csvDelimiter,outputWriter);
 		try {
 			processor.process();
 		} catch (IOException e) {

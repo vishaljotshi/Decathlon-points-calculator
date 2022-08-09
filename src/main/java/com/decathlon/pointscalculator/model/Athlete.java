@@ -50,13 +50,4 @@ public class Athlete {
     public void setResults(List<Result> results) {
         this.results = results;
     }
-
-    @Override
-    public String toString() {
-        return "Athlete{" +
-                "name='" + name + '\'' +
-                ", points=" + points +
-                ", position='" + position + '\'' +
-                "}\n";
-    }
 }

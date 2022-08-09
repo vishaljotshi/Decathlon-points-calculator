@@ -21,14 +21,14 @@ import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.*;
 
-public class PointsCalculatorProcessor {
-    Logger logger=Logger.getLogger(PointsCalculatorProcessor.class.getName());
+public class PointsCalculatorService {
+    Logger logger=Logger.getLogger(PointsCalculatorService.class.getName());
     private static Map<EventName, Event> eventMap = new LinkedHashMap<>();
     private String inputFilePath;
     private OutputWriter outputWriter;
     private String csvDelimiter;
 
-    public PointsCalculatorProcessor(String inputFilePath, String csvDelimiter, OutputWriter outputWriter) {
+    public PointsCalculatorService(String inputFilePath, String csvDelimiter, OutputWriter outputWriter) {
         this.inputFilePath=inputFilePath;
         this.outputWriter=outputWriter;
         this.csvDelimiter=csvDelimiter;
@@ -99,7 +99,7 @@ public class PointsCalculatorProcessor {
         try {
             return Optional.of(new AthleteRecord(recordLine,csvDelimiter));
         } catch (Exception e) {
-            logger.log(Level.SEVERE,String.format("Exception occurred while reading records : %f",e.getMessage()));
+            logger.log(Level.SEVERE,String.format("Exception occurred while reading record : %s",e.getMessage()));
         }
         return Optional.empty();
     }

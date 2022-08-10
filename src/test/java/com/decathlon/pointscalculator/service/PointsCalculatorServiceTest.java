@@ -3,7 +3,6 @@ package com.decathlon.pointscalculator.service;
 import com.decathlon.pointscalculator.event.OutputWriter;
 import com.decathlon.pointscalculator.event.impl.XmlWriter;
 import com.decathlon.pointscalculator.model.Athletes;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -14,6 +13,7 @@ import java.nio.file.Paths;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class PointsCalculatorServiceTest {
@@ -36,7 +36,7 @@ class PointsCalculatorServiceTest {
             pointsCalculatorService.process();
             String expectedResponse = Files.lines(Paths.get(expectedFilePath)).collect(Collectors.joining());
             String calculatedResponse = Files.lines(outputPath).collect(Collectors.joining());
-            Assertions.assertEquals(expectedResponse, calculatedResponse, "Calculated XML response validations");
+            assertEquals(expectedResponse, calculatedResponse, "Calculated XML response validations");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -51,11 +51,18 @@ class PointsCalculatorServiceTest {
 
     @Test
     void pointsCalculatorService_writeFail() {
-        String randomFileName = UUID.randomUUID().toString();
         ClassLoader classLoader = getClass().getClassLoader();
         String inputFilePath = new File(classLoader.getResource("sample-input2.csv").getFile()).getAbsolutePath();
         doThrow(new RuntimeException("")).when(outputWriter).convertAndWrite(any(Athletes.class));
         PointsCalculatorService pointsCalculatorService = new PointsCalculatorService(inputFilePath, ";", outputWriter);
-        Assertions.assertThrows(RuntimeException.class, () -> pointsCalculatorService.process());
+        assertThrows(RuntimeException.class, () -> pointsCalculatorService.process());
+    }
+    @Test
+    void pointsCalculatorService_InputFileDoesNotExists() throws IOException {
+        ClassLoader classLoader = getClass().getClassLoader();
+        String inputFilePath = UUID.randomUUID().toString()+".csv";
+        PointsCalculatorService pointsCalculatorService = new PointsCalculatorService(inputFilePath, ";", outputWriter);
+        pointsCalculatorService.process();
+        assertFalse(new File(inputFilePath).exists());
     }
 }

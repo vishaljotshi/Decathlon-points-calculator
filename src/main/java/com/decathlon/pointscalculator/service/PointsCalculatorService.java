@@ -5,20 +5,21 @@ import com.decathlon.pointscalculator.event.EventName;
 import com.decathlon.pointscalculator.event.OutputWriter;
 import com.decathlon.pointscalculator.event.impl.*;
 import com.decathlon.pointscalculator.model.Athlete;
-import com.decathlon.pointscalculator.model.Athletes;
 import com.decathlon.pointscalculator.model.AthleteRecord;
+import com.decathlon.pointscalculator.model.Athletes;
 import com.decathlon.pointscalculator.model.Result;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import static java.util.logging.Level.SEVERE;
 import static java.util.stream.Collectors.*;
 
 public class PointsCalculatorService {
@@ -52,6 +53,10 @@ public class PointsCalculatorService {
         initializeEventMap();
 
         Athletes athletes=null;
+        if(!validateInputFilePathExists(inputFilePath)){
+            logger.log(SEVERE,"Input file does not exists at specified path :: {0}",inputFilePath);
+            return;
+        }
         try(Stream<String> inputFileStream=Files.lines(Paths.get(inputFilePath))) {
             athletes=inputFileStream
                     .filter(recordLine -> recordLine.length() > 0)
@@ -70,7 +75,15 @@ public class PointsCalculatorService {
                     })
                     .collect(collectingAndThen(toList(), Athletes::new));
         }
+        catch (Exception ex){
+            logger.log(SEVERE,"Exception occurred while processing Input file:: {0}",inputFilePath);
+            return;
+        }
         outputWriter.convertAndWrite(athletes);
+    }
+
+    private boolean validateInputFilePathExists(String inputFilePath) {
+        return new File(inputFilePath).exists();
     }
 
     private String getPosition(AtomicInteger currentPosition, Map.Entry<Integer, List<Athlete>> entry) {
@@ -99,7 +112,7 @@ public class PointsCalculatorService {
         try {
             return Optional.of(new AthleteRecord(recordLine,csvDelimiter));
         } catch (Exception e) {
-            logger.log(Level.SEVERE,String.format("Exception occurred while reading record : %s",e.getMessage()));
+            logger.log(SEVERE,String.format("Exception occurred while reading record : %s",e.getMessage()));
         }
         return Optional.empty();
     }
